@@ -43,17 +43,22 @@ export default function Servicios() {
               description: "Evaluación completa de tu salud bucal y plan de tratamiento personalizado.",
             },
           ].map((service, index) => (
-            <div key={index}>
-              <BlurFade>
-                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="h-2 bg-teal-800"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-teal-800 mb-3">{service.title}</h3>
-                    <p className="text-gray-600">{service.description}</p>
-                  </div>
+            <BlurFade
+              key={index}
+              duration={0.6}
+              delay={index * 0.1}
+              blur="4px"
+              offset={8}
+              direction="up"
+            >
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="h-2 bg-teal-800"></div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-teal-800 mb-3">{service.title}</h3>
+                  <p className="text-gray-600">{service.description}</p>
                 </div>
-              </BlurFade>
-            </div>
+              </div>
+            </BlurFade>
           ))}
         </div>
       </div>

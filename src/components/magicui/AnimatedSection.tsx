@@ -9,39 +9,36 @@ interface AnimatedSectionProps {
 }
 
 export function AnimatedSection({ children }: AnimatedSectionProps) {
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0.1,
-    triggerOnce: true
+    triggerOnce: false
   });
 
   useEffect(() => {
     if (inView) {
-      setHasAnimated(true);
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
   }, [inView]);
 
   return (
     <div ref={ref} className="min-h-[1px]">
-      {hasAnimated ? (
-        <BlurFade
-          duration={0.6}
-          delay={0.1}
-          blur="4px"
-          offset={8}
-          transition={{
-            ease: [0.16, 1, 0.3, 1],
-            duration: 0.6,
-            delay: 0.1
-          }}
-        >
-          {children}
-        </BlurFade>
-      ) : (
-        <div className="opacity-0">
-          {children}
-        </div>
-      )}
+      <BlurFade
+        duration={0.6}
+        delay={0.1}
+        blur="4px"
+        offset={8}
+        inView={isVisible}
+        transition={{
+          ease: [0.16, 1, 0.3, 1],
+          duration: 0.6,
+          delay: 0.1
+        }}
+      >
+        {children}
+      </BlurFade>
     </div>
   );
 } 

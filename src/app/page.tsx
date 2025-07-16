@@ -1,8 +1,8 @@
 import ClientWrapper from "@/components/ClientWrapper";
 
-export default function Version2() {
+export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-gray-50">
+    <main className="min-h-screen bg-white">
       <ClientWrapper />
     </main>
   )
